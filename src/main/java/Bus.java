@@ -16,11 +16,11 @@ public class Bus {
         return this.passengers.size();
     }
 
-    public boolean canAdd(){
+    public boolean canAdd() {
         return this.passengers.size() < this.capacity;
     }
 
-    public boolean canRemove(){
+    public boolean canRemove() {
         return this.passengers.size() > 0;
     }
 
@@ -32,6 +32,18 @@ public class Bus {
         }
     }
 
+    public void addPassenger(Person person) {
+            if (canAdd()) {
+                this.passengers.add(person);
+            }
+    }
+
+    public void removePassenger(Person person) {
+        if (canRemove()) {
+            this.passengers.remove(person);
+        }
+    }
+
     public void removePassengers(Person person, int count) {
         for (int i = 0; i < count; i++) {
             if (canRemove()) {
@@ -40,5 +52,11 @@ public class Bus {
         }
     }
 
+    public void pickUp(BusStop busStop, Person person) {
+//        this.addPassenger(person);
+//        busStop.removePersonfromQueue(person);
+        this.addPassenger(busStop.boardBus(person));
+//        busStop.boardBus(person);
+    }
 
 }
